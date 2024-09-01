@@ -3,6 +3,7 @@ import {
   useChangeUserRoleMutation,
   useGetAllUsersQuery,
 } from "../../../redux/features/auth/authApi";
+import Swal from "sweetalert2";
 
 // Sample data (replace with actual data from your API)
 const users = [
@@ -56,9 +57,22 @@ const UserManagementTable = () => {
       console.log("handleToggleStatus", userId, newStatus);
       await changeUserRole({ userId, currentRole: newStatus }).unwrap();
       // Handle success (e.g., show a success message or update UI)
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `User role change to "${newStatus}"`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
       console.log("User role status updated successfully");
     } catch (error) {
       // Handle error (e.g., show an error message)
+      Swal.fire({
+        title: "Role Change Failed!",
+        text: `Failed to update user role status:: ${error}`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
       console.error("Failed to update user role status:", error);
     }
   };

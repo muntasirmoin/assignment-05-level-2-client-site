@@ -6,6 +6,7 @@ import {
   useMarkSlotAsAvailableCanceledMutation,
 } from "../../../redux/features/publicPages/slots.api";
 import { useGetAllServicesQuery } from "../../../redux/features/publicPages/services.api";
+import Swal from "sweetalert2";
 // import axios from "axios";
 
 const CreateSlotsServices = () => {
@@ -28,11 +29,11 @@ const CreateSlotsServices = () => {
     date: "",
     startTime: "",
     endTime: "",
-    serviceId: "",
+    service: "",
     isBooked: "available",
   });
   const [newSlot, setNewSlot] = useState<TSlotData>({
-    serviceId: "",
+    service: "",
     date: "",
     startTime: "",
     endTime: "",
@@ -51,16 +52,30 @@ const CreateSlotsServices = () => {
     try {
       await createSlot(newSlot).unwrap();
       // Handle success (e.g., show a success message)
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Slot created successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       console.log("Slot created successfully");
     } catch (error) {
       // Handle error (e.g., show an error message)
+      Swal.fire({
+        title: "Slot Create Failed!",
+        text: `There was an issue with create slot: ${error}`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
       console.error("Failed to create slot:", error);
     }
 
     // here is the from data come
     console.log("slots:New:", newSlot);
     setNewSlot({
-      serviceId: "",
+      service: "",
       date: "",
       startTime: "",
       endTime: "",
@@ -138,10 +153,24 @@ const CreateSlotsServices = () => {
     console.log("handleToggleStatus", slotId, newStatus);
     try {
       await markSlotAsAvailableCanceled({ slotId, currentStatus }).unwrap();
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Slot Status ${newStatus}`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
       // Handle success (e.g., show a success message or update UI)
       console.log("Slot status updated successfully");
     } catch (error) {
       // Handle error (e.g., show an error message)
+      Swal.fire({
+        title: "Issue with update slot Failed!",
+        text: `There was an issue with update slot: ${error}`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
       console.error("Failed to update slot status:", error);
     }
     // axios
@@ -161,14 +190,14 @@ const CreateSlotsServices = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         <select
           name="service"
-          value={newSlot.serviceId}
+          value={newSlot.service}
           onChange={handleChange}
           className="border ml-1 p-2 rounded"
         >
           <option value="">Select Service</option>
-          {serviceAllData.map((service) => (
-            <option key={service._id} value={service._id}>
-              {service.name}
+          {serviceAllData.map((singleService) => (
+            <option key={singleService._id} value={singleService._id}>
+              {singleService.name}
             </option>
           ))}
         </select>

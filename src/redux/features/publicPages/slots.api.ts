@@ -4,7 +4,7 @@ export interface TSlotData {
   date: string;
   startTime: string;
   endTime: string;
-  serviceId: string;
+  service: string;
   isBooked: "available" | "booked" | "canceled"; // Adjust if there are other statuses
 }
 

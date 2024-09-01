@@ -53,6 +53,12 @@ const ReviewSection = () => {
         setRating(0);
         setHover(undefined);
       } catch (err) {
+        Swal.fire({
+          title: "Booking Failed!",
+          text: `There was Review submission: ${error}`,
+          icon: "error",
+          confirmButtonText: "OK",
+        });
         console.error("Failed to create feedback:", err);
       }
     }

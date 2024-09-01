@@ -126,7 +126,7 @@ const BookingPageFeatures = () => {
       console.error("Error booking slot:", error);
       Swal.fire({
         title: "Booking Failed!",
-        text: "There was an issue with your booking. Please try again.",
+        text: `There was an issue with your booking. Please try again. ${error}`,
         icon: "error",
         confirmButtonText: "OK",
       });
