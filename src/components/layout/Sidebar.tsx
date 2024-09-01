@@ -50,7 +50,12 @@ const Sidebar = () => {
     <div className="h-screen sticky top-0 left-0 w-64 bg-[#0f3e2a] text-white">
       {/* Sidebar Header */}
       <div className="flex justify-center items-center h-20 bg-[#0f3e2a]">
-        <h1 className="text-xl font-bold">Wheels</h1>
+        {/* <h1 className="text-xl font-bold">Wheels</h1> */}
+        <img
+          src="https://res.cloudinary.com/dta2gcxsl/image/upload/v1725218226/wheelLogo_tg2cdq.png"
+          alt="Wheels Wash Logo"
+          className="h-10"
+        />
       </div>
 
       <hr className="w-full border-t-2 border-red-500" />

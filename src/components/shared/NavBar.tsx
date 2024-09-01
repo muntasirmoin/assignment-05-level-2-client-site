@@ -26,6 +26,10 @@ const NavBar: React.FC = () => {
   // const user = selectCurrentUser();
   const user = useSelector(selectCurrentUser);
 
+  const roleUser = user?.role === "user";
+
+  console.log("roleUser", roleUser);
+
   // start
   const { data, error, isLoading } = useGetUpcomingBookingsByUserIdQuery(
     user?.userId
@@ -191,7 +195,7 @@ const NavBar: React.FC = () => {
             </li>
 
             <li>
-              {nextSlot ? (
+              {nextSlot && roleUser ? (
                 <div>
                   Next Slot:
                   <CountdownTimer
@@ -199,9 +203,7 @@ const NavBar: React.FC = () => {
                     time={nextSlot.slotId.startTime}
                   />
                 </div>
-              ) : (
-                <div>No upcoming slots</div>
-              )}
+              ) : null}
             </li>
 
             <li>

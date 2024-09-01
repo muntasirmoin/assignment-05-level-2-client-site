@@ -13,6 +13,9 @@ const DashboardLayout = () => {
     dispatch(logout());
     navigate("/");
   };
+  const handleHome = () => {
+    navigate("/");
+  };
 
   return (
     <div className="h-screen flex">
@@ -23,10 +26,7 @@ const DashboardLayout = () => {
         {/* Header */}
         <header className="bg-[#0f3e2a] text-white p-4 flex justify-between items-center">
           <h1 className="text-xl font-bold">Dashboard</h1>
-          <button
-            className="btn btn-outline btn-warning"
-            onClick={handleLogout}
-          >
+          <button className="btn btn-outline btn-warning" onClick={handleHome}>
             Home
           </button>
 

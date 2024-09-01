@@ -1,101 +1,59 @@
 import React, { useState, useEffect } from "react";
+import {
+  useGetAllBookingsQuery,
+  useGetUpcomingBookingsByUserIdQuery,
+} from "../redux/features/publicPages/booking.api";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../redux/features/auth/authSlice";
+import { useGetAllUsersQuery } from "../redux/features/auth/authApi";
+import { useGetAllServiceQuery } from "../redux/features/user/service.api";
+import { useGetAllSlotsDataQuery } from "../redux/features/publicPages/slots.api";
+import { useGetAllReviewFeedbackQuery } from "../redux/features/reviews/reviewsFeedback.api";
 
 const AdminDashboard = () => {
-  const [services, setServices] = useState([]);
-
-  const serviceExample = [
-    {
-      _id: "1",
-      name: "House Cleaning",
-      description: "Comprehensive house cleaning service",
-      price: 25,
-      duration: 120,
-      isDeleted: false,
-    },
-    {
-      _id: "2",
-      name: "Gardening",
-      description: "Professional gardening and landscaping service",
-      price: 30,
-      duration: 90,
-      isDeleted: false,
-    },
-    {
-      _id: "3",
-      name: "House ",
-      description: "Comprehensive house cleaning service",
-      price: 28,
-      duration: 180,
-      isDeleted: false,
-    },
-    {
-      _id: "4",
-      name: "Gardening & Floor",
-      description: "Professional gardening and landscaping service",
-      price: 30,
-      duration: 70,
-      isDeleted: false,
-    },
-  ];
-
-  // useEffect(() => {
-  //   // Fetch services from API (mocked for now)
-  //   const fetchServices = async () => {
-  //     try {
-  //       const response = await axios.get("/api/services"); // Replace with actual API endpoint
-  //       setServices(response.data);
-  //     } catch (error) {
-  //       console.error("Failed to fetch services:", error);
-  //     }
-  //   };
-
-  //   fetchServices();
-  // }, []);
+  const user = useSelector(selectCurrentUser);
+  const { data: upcomingBookings } = useGetUpcomingBookingsByUserIdQuery(
+    user?.userId
+  );
+  const { data: allUser } = useGetAllUsersQuery(undefined);
+  const { data: allService } = useGetAllServiceQuery(undefined);
+  const { data: allBooking } = useGetAllBookingsQuery(undefined);
+  const { data: allSLot } = useGetAllSlotsDataQuery(undefined);
+  const { data: allReviewFeedback } = useGetAllReviewFeedbackQuery(undefined);
+  const upcomingBookingsLength = upcomingBookings?.data?.length;
+  const totalUser = allUser?.data?.length | 0;
+  const totalService = allService?.data?.length | 0;
+  const totalBooking = allBooking?.data?.length | 0;
+  const totalSlot = allSLot?.data?.length | 0;
+  const totalReviews = allReviewFeedback?.length | 0;
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Admin Dashboard</h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
-          <thead>
-            <tr className="bg-gray-100 border-b">
-              {/* <th className="py-3 px-4 text-center">Service ID</th> */}
-              <th className="py-3 px-4 text-center">Service Name</th>
-              <th className="py-3 px-4 text-center">Description</th>
-              <th className="py-3 px-4 text-center">Price</th>
-              <th className="py-3 px-4 text-center">Duration</th>
-              {/* <th className="py-3 px-4 text-center">Update</th>
-              <th className="py-3 px-4 text-center">Delete</th> */}
-            </tr>
-          </thead>
-          <tbody>
-            {serviceExample.map((service) => (
-              <tr key={service._id} className="border-b">
-                {/* <td className="py-2 px-4">{service._id}</td> */}
-                <td className="py-2 px-4 text-center">{service.name}</td>
-                <td className="py-2 px-4 text-center">{service.description}</td>
-                <td className="py-2 px-4 text-center">${service.price}</td>
-                <td className="py-2 px-4 text-center">{service.duration}</td>
-                {/* <td className="py-2 px-4 text-center">
-                  <button
-                    onClick={() => handleUpdate(service._id)}
-                    className="btn btn-warning ml-1  text-white px-4 py-2 rounded"
-                  >
-                    Update
-                  </button>
-                </td>
-                <td className="py-2 px-4">
-                  <button
-                    onClick={() => handleDelete(service._id)}
-                    className="btn btn-error ml-1  text-white px-4 py-2 rounded"
-                  >
-                    Delete
-                  </button>
-                </td> */}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="p-4">
+        {/* <h1 className="text-2xl font-bold mb-4">User Dashboard</h1> */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="bg-blue-500 text-white p-4 rounded-lg shadow">
+            <h2 className="text-lg font-semibold">Total User</h2>
+            <p className="text-2xl">{totalUser}</p>
+          </div>
+          <div className="bg-green-500 text-white p-4 rounded-lg shadow">
+            <h2 className="text-lg font-semibold">Total Service</h2>
+            <p className="text-2xl">{totalService}</p>
+          </div>
+          <div className="bg-yellow-500 text-white p-4 rounded-lg shadow">
+            <h2 className="text-lg font-semibold">Total Slot</h2>
+            <p className="text-2xl">{totalSlot} </p>
+          </div>
+
+          <div className="bg-yellow-500 text-white p-4 rounded-lg shadow">
+            <h2 className="text-lg font-semibold">Total Booking</h2>
+            <p className="text-2xl">{totalBooking} </p>
+          </div>
+          <div className="bg-blue-500 text-white p-4 rounded-lg shadow">
+            <h2 className="text-lg font-semibold">Total review</h2>
+            <p className="text-2xl">{totalReviews}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

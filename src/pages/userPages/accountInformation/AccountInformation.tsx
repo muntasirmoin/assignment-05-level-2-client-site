@@ -5,6 +5,7 @@ import {
   useGetUserByIdQuery,
   useUpdateUserByIdMutation,
 } from "../../../redux/features/auth/authApi";
+import Swal from "sweetalert2";
 
 const AccountInformation = () => {
   const user = useSelector(selectCurrentUser);
@@ -64,8 +65,21 @@ const AccountInformation = () => {
       };
       await updateUserById({ userId, updateData }).unwrap();
       console.log("User updated successfully");
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "User updated successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       console.error("Failed to update user:", error);
+      Swal.fire({
+        title: "Error!",
+        text: `${error}Failed to update user`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 
