@@ -114,14 +114,14 @@ const ServiceDetailsPage = () => {
             <div className="p-6">
               <p className="text-gray-700 mb-4">{service.description}</p>
               <p className="text-lg font-semibold mb-4">
-                Price: ${service?.price?.toFixed(2)}
+                BDT {service?.price?.toFixed(2)}
               </p>
 
               {/* Date Picker */}
               <div className="mb-6">
                 <label
                   htmlFor="date"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-lg font-bold text-gray-700"
                 >
                   Select Date:
                 </label>

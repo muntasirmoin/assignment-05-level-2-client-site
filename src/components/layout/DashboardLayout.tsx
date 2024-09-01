@@ -1,14 +1,17 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import { useAppDispatch } from "../../redux/hooks";
+import { logout } from "../../redux/features/auth/authSlice";
 
 // import { logout } from "../../redux/features/auth/authSlice";
 
 const DashboardLayout = () => {
-  //   const dispatch = useAppDispatch();
-
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const handleLogout = () => {
-    // dispatch(logout());
+    dispatch(logout());
+    navigate("/");
   };
 
   return (
@@ -20,7 +23,14 @@ const DashboardLayout = () => {
         {/* Header */}
         <header className="bg-[#0f3e2a] text-white p-4 flex justify-between items-center">
           <h1 className="text-xl font-bold">Dashboard</h1>
-          <button className="btn btn-error" onClick={handleLogout}>
+          <button
+            className="btn btn-outline btn-warning"
+            onClick={handleLogout}
+          >
+            Home
+          </button>
+
+          <button className="btn btn-outline btn-error" onClick={handleLogout}>
             Logout
           </button>
         </header>

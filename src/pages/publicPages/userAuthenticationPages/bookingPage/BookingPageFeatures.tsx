@@ -141,71 +141,28 @@ const BookingPageFeatures = () => {
         {/* Left Side: Service Information */}
         <div className="w-full md:w-2/3 p-4 bg-white shadow-lg rounded-lg">
           {service ? (
-            <div>
-              {/* Service Header */}
-              <div className="relative mb-6">
-                <img
-                  src={service?.image}
-                  alt={service?.name}
-                  className="w-full h-64 object-cover rounded-t-lg"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                  <h1 className="text-3xl font-bold text-white">
-                    {service?.name}
-                  </h1>
-                </div>
-              </div>
-
-              {/* Service Details */}
-              <div>
-                <p className="text-gray-700 mb-4">{service?.description}</p>
-                <p className="text-lg font-semibold mb-4">
-                  Price: ${service?.price.toFixed(2)}
-                </p>
-
-                {/* Date Picker */}
-                <div className="mb-6">
-                  <label
-                    htmlFor="date"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Select Date:
-                  </label>
-                  <input
-                    type="date"
-                    id="date"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
-                    onChange={handleDateChange}
-                    value={format(selectedDate, "yyyy-MM-dd")}
+            <div className="flex justify-center p-4">
+              <div className="card bg-base-100 w-96 shadow-xl">
+                <figure>
+                  <img
+                    src={service.image} // Dynamically setting the image URL
+                    alt={service.name}
+                    className="w-full h-64 object-cover rounded-t-lg"
                   />
-                </div>
-
-                {/* Time Slots */}
-                {/* <div className="mb-6">
-                  <h2 className="text-xl font-semibold mb-2">
-                    Available Time Slots
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title flex justify-between items-center">
+                    {service.name}
+                    <div className="badge badge-secondary">
+                      {service.duration} Minutes
+                    </div>{" "}
+                    {/* Optional badge */}
                   </h2>
-                  <div className="grid grid-cols-2 gap-4">
-                    {availableSlots.length > 0 ? (
-                      availableSlots.map((slot) => (
-                        <button
-                          key={slot}
-                          className={`btn ${
-                            slot === selectedSlot
-                              ? "btn-primary"
-                              : "btn-secondary"
-                          } ${false ? "cursor-not-allowed opacity-50" : ""}`}
-                          disabled={false}
-                          onClick={() => handleSlotClick(slot)}
-                        >
-                          {slot}
-                        </button>
-                      ))
-                    ) : (
-                      <p>No available slots for this date.</p>
-                    )}
-                  </div>
-                </div> */}
+                  <p className="text-gray-700 mb-2">{service.description}</p>
+                  <p className="text-lg font-semibold mb-2">
+                    BDT {service.price.toFixed(2)}
+                  </p>
+                </div>
               </div>
             </div>
           ) : (
@@ -287,7 +244,7 @@ const BookingPageFeatures = () => {
                 htmlFor="timeSlot"
                 className="block text-sm font-medium text-gray-700"
               >
-                Vehicle Brand
+                Vehicle Name
               </label>
               <select
                 onChange={handleChange}

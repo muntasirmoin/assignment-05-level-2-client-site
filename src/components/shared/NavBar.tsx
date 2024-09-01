@@ -12,7 +12,7 @@ interface Slot {
 
   startTime: string;
 
-  // Add other fields if necessary
+  // Add other fields if necessary done
 }
 
 interface Booking {

@@ -225,34 +225,37 @@ const ServicesPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
         {filteredServices?.map((service) => (
-          <div
-            key={service?._id}
-            className="card bg-base-100 shadow-xl p-4 flex flex-col items-center"
-          >
-            <img
-              src={service.image}
-              alt={service.name}
-              className="w-24 h-24 object-cover mb-4 rounded-lg"
-            />
-            <h2 className="text-xl font-bold mb-2">{service.name}</h2>
-            <p className="text-gray-700 mb-2">{service.description}</p>
-            <p className="text-lg font-semibold mb-2">
-              Price: ${service.price.toFixed(2)}
-            </p>
-            <p className="text-sm text-gray-500">
-              Duration: {service.duration}
-            </p>
+          <div className="card bg-base-100 w-96 shadow-xl">
+            <figure>
+              <img
+                src={service.image} // Dynamically setting the image URL
+                alt={service.name}
+                className="w-full h-64 object-cover rounded-t-lg"
+              />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title flex justify-between items-center">
+                {service.name}
+                <div className="badge badge-secondary">
+                  {service.duration} Minutes
+                </div>{" "}
+                {/* Optional badge */}
+              </h2>
+              <p className="text-gray-700 mb-2">{service.description}</p>
+              <p className="text-lg font-semibold mb-2">
+                BDT {service.price.toFixed(2)}
+              </p>
 
-            <Link to={`/service-details/${service._id}`}>
-              <button
-                className="btn btn-sm btn-outline btn-info"
-                style={{ fontSize: "10px" }}
-              >
-                Details
-              </button>
-            </Link>
+              <div className="card-actions justify-end">
+                <Link to={`/service-details/${service._id}`}>
+                  <button className="btn btn-sm btn-outline btn-info">
+                    Details
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
         ))}
       </div>

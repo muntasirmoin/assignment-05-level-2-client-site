@@ -49,26 +49,27 @@ const FeaturedServices = () => {
   return (
     <section className="py-12 bg-gray-100 mt-5 mb-5">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-8">
-          Featured Services
-        </h2>
+        <h2 className="text-3xl font-bold text-center mb-8">Services</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {serviceData?.data.slice(0, 6).map((service) => (
             <div key={service._id} className="relative group">
               <img
                 src={service.image}
                 alt={service.title}
-                className="w-full h-32 object-cover rounded-lg"
+                className="w-full h-36 object-cover rounded-lg"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
                 <p className="text-white text-center p-4">
                   {service.description}
                 </p>
               </div>
-              <div className="absolute inset-0 flex items-center justify-center rounded-lg">
-                <h3 className="text-lg font-semibold text-white absolute bottom-2 left-2">
+              <div className="absolute bottom-2 left-2 right-2 flex justify-between items-center px-4">
+                <h3 className="text-lg font-semibold text-white">
                   {service.name}
                 </h3>
+                <p className="text-lg font-semibold text-white">
+                  BDT {service.price} {/* Adjust currency symbol as needed */}
+                </p>
               </div>
             </div>
           ))}
