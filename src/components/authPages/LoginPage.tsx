@@ -7,6 +7,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { setUser, TUSer } from "../../redux/features/auth/authSlice";
 import { toast } from "sonner";
 import { verifyToken } from "../../utils/verifyToken";
+import { Helmet } from "react-helmet-async";
 
 interface LoginValues {
   userId: string;
@@ -104,73 +105,78 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#0f3e2a] max-w-full mx-auto px-6 py-16">
-      <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold mb-4">Login</h1>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              className={`input input-bordered w-full ${
-                errors.email ? "input-error" : ""
-              }`}
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Invalid email format",
-                },
-              })}
-            />
-            {errors.email && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.email.message}
-              </p>
-            )}
+    <>
+      <Helmet>
+        <title>Login | Wheels</title>
+      </Helmet>
+      <div className="bg-[#0f3e2a] max-w-full mx-auto px-6 py-16">
+        <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
+          <h1 className="text-2xl font-bold mb-4">Login</h1>
+          <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <input
+                type="email"
+                className={`input input-bordered w-full ${
+                  errors.email ? "input-error" : ""
+                }`}
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Invalid email format",
+                  },
+                })}
+              />
+              {errors.email && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <input
+                type="password"
+                className={`input input-bordered w-full ${
+                  errors.password ? "input-error" : ""
+                }`}
+                {...register("password", { required: "Password is required" })}
+              />
+              {errors.password && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.password.message}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className={`btn btn-primary w-full `}
+              //   disabled={isSubmitting}
+            >
+              {/* {isSubmitting ? "Logging in..." : "Login"} */}Login
+            </button>
+          </form>
+
+          <div>
+            {" "}
+            <p className="text-red-500 mb-4">
+              If you're not registered. Please{" "}
+              <a href="/signUp" className="text-blue-500 underline">
+                Sign Up!
+              </a>
+              .
+            </p>
           </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              className={`input input-bordered w-full ${
-                errors.password ? "input-error" : ""
-              }`}
-              {...register("password", { required: "Password is required" })}
-            />
-            {errors.password && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.password.message}
-              </p>
-            )}
-          </div>
-
-          <button
-            type="submit"
-            className={`btn btn-primary w-full `}
-            //   disabled={isSubmitting}
-          >
-            {/* {isSubmitting ? "Logging in..." : "Login"} */}Login
-          </button>
-        </form>
-
-        <div>
-          {" "}
-          <p className="text-red-500 mb-4">
-            If you're not registered. Please{" "}
-            <a href="/signUp" className="text-blue-500 underline">
-              Sign Up!
-            </a>
-            .
-          </p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
