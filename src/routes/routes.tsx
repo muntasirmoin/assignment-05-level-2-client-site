@@ -15,6 +15,7 @@ import DashboardLayout from "../components/layout/DashboardLayout";
 import { userRoutePaths } from "./user.route";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../redux/features/auth/authSlice";
+import About from "../pages/publicPages/About";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/bookingPageFeatures",
         element: <BookingPageFeatures></BookingPageFeatures>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
       },
     ],
   },

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-[#0f3e2a] text-gray-300 py-10">
@@ -7,7 +9,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between mb-8">
           {/* Logo and Name */}
           <div className="mb-8 md:mb-0 text-center md:text-left">
-            <h2 className="text-3xl font-bold text-white">Wheels</h2>
+            <h2 className="text-3xl font-bold text-white">Wheels Wash</h2>
             <p className="mt-2 text-gray-400">Where Clean Meets Green.</p>
           </div>
 
@@ -48,27 +50,32 @@ const Footer = () => {
           <div className="text-center md:text-left px-2">
             <h3 className="font-semibold text-lg text-white mb-4">Pages</h3>
             <ul>
-              <li className="mb-2">Page-</li>
-              <li className="mb-2">Page-</li>
-              <li className="mb-2">Page-</li>
-              <li className="mb-2">Page-</li>
+              <li className="mb-2">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/services">Service</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/about">About</Link>
+              </li>
             </ul>
           </div>
 
           {/* Contact and Address */}
-          <div className="text-center md:text-left px-2">
+          <div className="text-center md:text-center px-2">
             <h3 className="font-semibold text-lg text-white mb-4">
               Contact Us
             </h3>
             <ul>
-              <li className="mb-2">Email: WheelsWash@gmail.com</li>
-              <li className="mb-2">Phone: +88 1768968938</li>
+              <li className="mb-2">WheelsWash@gmail.com</li>
+              <li className="mb-2">+880 1768968938</li>
             </ul>
             <div className="text-center">
-              <h3 className="font-semibold text-lg text-white mt-6">Address</h3>
+              {/* <h3 className="font-semibold text-lg text-white mt-6">Address</h3> */}
               <ul>
-                <li>WheelsWash,</li>
-                <li>Sylhet.</li>
+                <li>WheelsWash, Sylhet.</li>
+                {/* <li>Sylhet.</li> */}
               </ul>
             </div>
           </div>

@@ -5,9 +5,13 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux/hooks";
 import { useGetUpcomingBookingsByUserIdQuery } from "../../redux/features/publicPages/booking.api";
 import CountdownTimer from "./CountdownTimer";
+import { PiUserListBold } from "react-icons/pi";
 
 interface Slot {
   date: string;
+
+  startTime: string;
+
   // Add other fields if necessary
 }
 
@@ -31,19 +35,35 @@ const NavBar: React.FC = () => {
   const now = new Date();
 
   // Filter and sort the bookings
+  const combineDateAndTime = (date: string, time: string): Date => {
+    // Example format: '2024-09-02' for date and '12:00' for time
+    const [hours, minutes] = time.split(":").map(Number);
+    const formattedDate = `${date}T${time}:00`; // Format as ISO string: 'YYYY-MM-DDTHH:MM:00'
+    return new Date(formattedDate);
+  };
+
+  // Filter and sort the bookings
   const nextSlot = bookings
     .filter((booking) => {
-      // Check if slotId.date is a valid Date string
-      const bookingDate = new Date(booking.slotId.date);
+      const bookingDate = combineDateAndTime(
+        booking.slotId.date,
+        booking.slotId.startTime
+      );
       return bookingDate > now;
     })
     .sort((a, b) => {
-      const dateA = new Date(a.slotId.date).getTime();
-      const dateB = new Date(b.slotId.date).getTime();
+      const dateA = combineDateAndTime(
+        a.slotId.date,
+        a.slotId.startTime
+      ).getTime();
+      const dateB = combineDateAndTime(
+        b.slotId.date,
+        b.slotId.startTime
+      ).getTime();
       return dateA - dateB;
-    })[0];
+    })[0]; // Get the first (earliest) upcoming slot
 
-  console.log("nextSlot", nextSlot);
+  console.log("nextSlot", nextSlot?.slotId?.date, bookings);
   // end
 
   // console.log("navbarUSer", user);
@@ -57,7 +77,7 @@ const NavBar: React.FC = () => {
     const baseClasses = "py-2 px-4 rounded transition-colors duration-200";
     const hoverClasses = "hover:bg-[#8B0000] hover:text-white"; // Changed hover background color to a green shade
     const activeClasses =
-      location.pathname === path ? "bg-[#8B0000] text-white" : ""; // Changed active background color to match hover color
+      location.pathname === path ? "mr-2 ml-2 bg-[#8B0000] text-white" : ""; // Changed active background color to match hover color
 
     return `${baseClasses} ${hoverClasses} ${activeClasses}`;
   };
@@ -91,12 +111,12 @@ const NavBar: React.FC = () => {
             >
               <li>
                 <Link to="/" className={getLinkClasses("/")}>
-                  Homepage
+                  Home
                 </Link>
               </li>
               <li>
-                <Link to="/products" className={getLinkClasses("/products")}>
-                  Products
+                <Link to="/services" className={getLinkClasses("/services")}>
+                  Service
                 </Link>
               </li>
               <li>
@@ -104,23 +124,34 @@ const NavBar: React.FC = () => {
                   to="/bookingPageFeatures"
                   className={getLinkClasses("/bookingPageFeatures")}
                 >
-                  Product Management
+                  Booking
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/product-details"
-                  className={getLinkClasses("/product-details")}
-                >
-                  Product
-                </Link>
-              </li>
+              <>
+                {user ? (
+                  <>
+                    {/* Render Logout Button if User is Logged In */}
+                    <li>
+                      <button
+                        onClick={handleLogout}
+                        className={getLinkClasses("/")}
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    {/* Render Login Link if User is Not Logged In */}
+                    <li>
+                      <Link to="/login" className={getLinkClasses("/login")}>
+                        Login
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </>
 
-              <li>
-                <Link to="/checkout" className={getLinkClasses("/checkout")}>
-                  Checkout
-                </Link>
-              </li>
               <li>
                 <Link to="/about" className={getLinkClasses("/about")}>
                   About
@@ -130,9 +161,9 @@ const NavBar: React.FC = () => {
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
             <img
-              src="https://i.ibb.co/fp712Fg/logo.png"
-              alt="FitZone Logo"
-              className="h-8"
+              src="https://res.cloudinary.com/dta2gcxsl/image/upload/v1725218226/wheelLogo_tg2cdq.png"
+              alt="Wheels Wash Logo"
+              className="h-12"
             />
           </Link>
         </div>
@@ -159,24 +190,14 @@ const NavBar: React.FC = () => {
               </Link>
             </li>
 
-            <>
-              {user ? (
-                <li>
-                  <Link
-                    to={`/${user.role}/dashboard`}
-                    className={getLinkClasses(`/${user.role}/dashboard`)}
-                  >
-                    Dashboard
-                  </Link>
-                </li>
-              ) : null}
-            </>
-
             <li>
               {nextSlot ? (
                 <div>
                   Next Slot:
-                  <CountdownTimer targetDate={nextSlot.slotId.date} />
+                  <CountdownTimer
+                    date={nextSlot.slotId.date}
+                    time={nextSlot.slotId.startTime}
+                  />
                 </div>
               ) : (
                 <div>No upcoming slots</div>
@@ -188,7 +209,18 @@ const NavBar: React.FC = () => {
                 About
               </Link>
             </li>
-
+            <>
+              {user ? (
+                <li>
+                  <Link
+                    to={`/${user.role}/dashboard`}
+                    className={getLinkClasses(`/${user.role}/dashboard`)}
+                  >
+                    <PiUserListBold size={25} />
+                  </Link>
+                </li>
+              ) : null}
+            </>
             <>
               {user ? (
                 <>

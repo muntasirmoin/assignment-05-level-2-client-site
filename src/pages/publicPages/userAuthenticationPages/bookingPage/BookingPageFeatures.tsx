@@ -9,6 +9,7 @@ import {
 } from "../../../../redux/features/auth/authSlice";
 import { useMarkSlotAsBookedMutation } from "../../../../redux/features/publicPages/slots.api";
 import { useCreateBookingMutation } from "../../../../redux/features/publicPages/booking.api";
+import Swal from "sweetalert2";
 
 interface TService {
   _id: string;
@@ -112,11 +113,23 @@ const BookingPageFeatures = () => {
         token, // Pass the token here as part of the mutation args
       }).unwrap();
 
-      alert("Booking successful!");
+      Swal.fire({
+        title: "Booking Successful!",
+        text: "Your booking was completed successfully.",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+
+      window.location.href = response.data.payment_url;
       console.log("Booking Response:", response);
     } catch (error) {
       console.error("Error booking slot:", error);
-      alert("Failed to book the slot. Please try again.");
+      Swal.fire({
+        title: "Booking Failed!",
+        text: "There was an issue with your booking. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
 
     //

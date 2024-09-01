@@ -12,7 +12,7 @@ const bookingManagementApi = baseApi.injectEndpoints({
         //   Authorization: `Bearer ${token}`,
         // },
       }),
-      invalidatesTags: ["Slots"], // Adjust this based on your caching strategy
+      invalidatesTags: ["Slots", "Booking"], // Adjust this based on your caching strategy
     }),
 
     //
@@ -42,7 +42,7 @@ const bookingManagementApi = baseApi.injectEndpoints({
         method: "GET",
         credentials: "include", // Include credentials if your backend requires it
       }),
-      providesTags: ["Booking"], // Invalidate or provide tags to keep the cache in sync
+      providesTags: ["Booking", "UserRole"], // Invalidate or provide tags to keep the cache in sync
     }),
 
     //
