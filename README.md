@@ -53,6 +53,31 @@ We envision Wheels Wash as a leader in the vehicle service and wash industry, re
 - Features od services
 - Review Submit and View All review
 
+2. Service page:
+
+- Search and sort option for service data and can select single data click on Details
+
+3. Booking Page:
+
+- Selected Service (site) and User Booking details (right)
+- Click on Pay Now open payment page
+
+4. About Page
+
+- Introduction, mission, vision of this Wheels Wash.
+
+5. Login Page
+6. SignUp Page [user can register here]
+7. DashBoard User
+
+- User Can update user info. User can view his past and upcoming booking.
+
+8. Dashboard Admin
+
+- Admin can update user role.
+- Can add, update, delete Service data.
+- Can add slot data! Can change Slot status only between available and cancel, not booked one!
+
 ### Installation Steps [How to set up and use the application locally.]
 
 1. Step-by-step instructions on how to install the project.
