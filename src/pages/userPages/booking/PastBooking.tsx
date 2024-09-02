@@ -8,48 +8,12 @@ import {
 
 interface Slot {
   date: string;
-  // Add other fields if necessary
 }
 
 interface Booking {
   _id: string;
   slotId: Slot;
-  // Add other fields if necessary
 }
-
-// const pastBookings = [
-//   {
-//     customer: "666be46037bc0921202187a3",
-//     serviceId: "666c0a0d490282e10ea489fa",
-//     slotId: "666c2be822d0218d942c850f",
-//     vehicleType: "car",
-//     vehicleBrand: "Toyota",
-//     vehicleModel: "Axio",
-//     manufacturingYear: 2024,
-//     registrationPlate: "Dhaka-metro-ga-17-1220",
-//   },
-//   {
-//     customer: "666be46037bc0921202187a3",
-//     serviceId: "666c0a0d490282e10ea489fa",
-//     slotId: "666c2be822d0218d942c850f",
-//     vehicleType: "car",
-//     vehicleBrand: "Toyota",
-//     vehicleModel: "Axio",
-//     manufacturingYear: 2024,
-//     registrationPlate: "Dhaka-metro-ga-17-1220",
-//   },
-//   {
-//     customer: "666be46037bc0921202187a3",
-//     serviceId: "666c0a0d490282e10ea489fa",
-//     slotId: "666c2be822d0218d942c850f",
-//     vehicleType: "car",
-//     vehicleBrand: "Toyota",
-//     vehicleModel: "Axio",
-//     manufacturingYear: 2024,
-//     registrationPlate: "Dhaka-metro-ga-17-1220",
-//   },
-//   // Add more booking objects as needed
-// ];
 
 const PastBooking = () => {
   const user = useSelector(selectCurrentUser);
