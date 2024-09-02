@@ -9,6 +9,8 @@ import { useGetAllUsersQuery } from "../redux/features/auth/authApi";
 import { useGetAllServiceQuery } from "../redux/features/user/service.api";
 import { useGetAllSlotsDataQuery } from "../redux/features/publicPages/slots.api";
 import { useGetAllReviewFeedbackQuery } from "../redux/features/reviews/reviewsFeedback.api";
+import { Helmet } from "react-helmet-async";
+import ScrollToTopButton from "../components/shared/ScrollToTopButton";
 
 const AdminDashboard = () => {
   const user = useSelector(selectCurrentUser);
@@ -28,34 +30,41 @@ const AdminDashboard = () => {
   const totalReviews = allReviewFeedback?.length | 0;
 
   return (
-    <div className="p-6">
-      <div className="p-4">
-        {/* <h1 className="text-2xl font-bold mb-4">User Dashboard</h1> */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-blue-500 text-white p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold">Total User</h2>
-            <p className="text-2xl">{totalUser}</p>
-          </div>
-          <div className="bg-green-500 text-white p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold">Total Service</h2>
-            <p className="text-2xl">{totalService}</p>
-          </div>
-          <div className="bg-yellow-500 text-white p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold">Total Slot</h2>
-            <p className="text-2xl">{totalSlot} </p>
-          </div>
+    <>
+      {" "}
+      <Helmet>
+        <title>Admin Dashboard | Wheels</title>
+      </Helmet>
+      <ScrollToTopButton></ScrollToTopButton>
+      <div className="p-6">
+        <div className="p-4">
+          {/* <h1 className="text-2xl font-bold mb-4">User Dashboard</h1> */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="bg-blue-500 text-white p-4 rounded-lg shadow">
+              <h2 className="text-lg font-semibold">Total User</h2>
+              <p className="text-2xl">{totalUser}</p>
+            </div>
+            <div className="bg-green-500 text-white p-4 rounded-lg shadow">
+              <h2 className="text-lg font-semibold">Total Service</h2>
+              <p className="text-2xl">{totalService}</p>
+            </div>
+            <div className="bg-yellow-500 text-white p-4 rounded-lg shadow">
+              <h2 className="text-lg font-semibold">Total Slot</h2>
+              <p className="text-2xl">{totalSlot} </p>
+            </div>
 
-          <div className="bg-yellow-500 text-white p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold">Total Booking</h2>
-            <p className="text-2xl">{totalBooking} </p>
-          </div>
-          <div className="bg-blue-500 text-white p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold">Total review</h2>
-            <p className="text-2xl">{totalReviews}</p>
+            <div className="bg-yellow-500 text-white p-4 rounded-lg shadow">
+              <h2 className="text-lg font-semibold">Total Booking</h2>
+              <p className="text-2xl">{totalBooking} </p>
+            </div>
+            <div className="bg-blue-500 text-white p-4 rounded-lg shadow">
+              <h2 className="text-lg font-semibold">Total review</h2>
+              <p className="text-2xl">{totalReviews}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

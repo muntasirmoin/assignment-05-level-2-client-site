@@ -6,6 +6,8 @@ import {
   useGetPastBookingsByUserIdQuery,
   useGetUpcomingBookingsByUserIdQuery,
 } from "../redux/features/publicPages/booking.api";
+import { Helmet } from "react-helmet-async";
+import ScrollToTopButton from "../components/shared/ScrollToTopButton";
 
 const UserDashboard = () => {
   const user = useSelector(selectCurrentUser);
@@ -30,25 +32,32 @@ const UserDashboard = () => {
   console.log("Past Bookings Length:", pastBookingsLength);
 
   return (
-    <div>
-      <div className="p-4">
-        {/* <h1 className="text-2xl font-bold mb-4">User Dashboard</h1> */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {/* <div className="bg-blue-500 text-white p-4 rounded-lg shadow">
+    <>
+      <Helmet>
+        <title>User Dashboard | Wheels</title>
+      </Helmet>
+      <ScrollToTopButton></ScrollToTopButton>
+
+      <div>
+        <div className="p-4">
+          {/* <h1 className="text-2xl font-bold mb-4">User Dashboard</h1> */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {/* <div className="bg-blue-500 text-white p-4 rounded-lg shadow">
             <h2 className="text-lg font-semibold">Account Email</h2>
             <p className="text-2xl">{user?.email}</p>
           </div> */}
-          <div className="bg-green-500 text-white p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold">Past Booking</h2>
-            <p className="text-2xl">{pastBookingsLength}</p>
-          </div>
-          <div className="bg-yellow-500 text-white p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold">Upcoming Booking</h2>
-            <p className="text-2xl">{upcomingBookingsLength} </p>
+            <div className="bg-green-500 text-white p-4 rounded-lg shadow">
+              <h2 className="text-lg font-semibold">Past Booking</h2>
+              <p className="text-2xl">{pastBookingsLength}</p>
+            </div>
+            <div className="bg-yellow-500 text-white p-4 rounded-lg shadow">
+              <h2 className="text-lg font-semibold">Upcoming Booking</h2>
+              <p className="text-2xl">{upcomingBookingsLength} </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
