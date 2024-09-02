@@ -16,35 +16,43 @@ import { userRoutePaths } from "./user.route";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../redux/features/auth/authSlice";
 import About from "../pages/publicPages/About";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
         element: <Home></Home>,
+        errorElement: <ErrorPage></ErrorPage>,
       },
       {
         path: "/reviews",
         element: <Reviews></Reviews>,
+        errorElement: <ErrorPage></ErrorPage>,
       },
       {
         path: "/services",
         element: <ServicesPage></ServicesPage>,
+        errorElement: <ErrorPage></ErrorPage>,
       },
       {
         path: "/service-details/:serviceId",
         element: <ServiceDetailsPage></ServiceDetailsPage>,
+        errorElement: <ErrorPage></ErrorPage>,
       },
       {
         path: "/bookingPageFeatures",
         element: <BookingPageFeatures></BookingPageFeatures>,
+        errorElement: <ErrorPage></ErrorPage>,
       },
       {
         path: "/about",
         element: <About></About>,
+        errorElement: <ErrorPage></ErrorPage>,
       },
     ],
   },
@@ -54,21 +62,25 @@ const router = createBrowserRouter([
     path: "/admin",
     element: <DashboardLayout></DashboardLayout>,
     children: routeGenerator(adminRoutePaths),
+    errorElement: <ErrorPage></ErrorPage>,
   },
   // user route
   {
     path: "/user",
     element: <DashboardLayout></DashboardLayout>,
     children: routeGenerator(userRoutePaths),
+    errorElement: <ErrorPage></ErrorPage>,
   },
   //
   {
     path: "/signUp",
     element: <SignUpPage></SignUpPage>,
+    errorElement: <ErrorPage></ErrorPage>,
   },
   {
     path: "/login",
     element: <LoginPage></LoginPage>,
+    errorElement: <ErrorPage></ErrorPage>,
   },
 ]);
 
