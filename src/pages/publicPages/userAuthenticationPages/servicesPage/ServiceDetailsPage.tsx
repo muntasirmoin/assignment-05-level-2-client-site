@@ -5,6 +5,7 @@ import { useGetServiceByIdQuery } from "../../../../redux/features/publicPages/s
 import { useGetAllSlotsQuery } from "../../../../redux/features/publicPages/slots.api";
 import { setBookingInfo } from "../../../../redux/features/publicPages/booking/bookingSlice";
 import { useDispatch } from "react-redux";
+import ScrollToTopButton from "../../../../components/shared/ScrollToTopButton";
 
 export interface TSlot {
   _id: string;
@@ -92,96 +93,99 @@ const ServiceDetailsPage = () => {
   };
 
   return (
-    <div className="py-16">
-      <div className="p-4 max-w-4xl mx-auto">
-        {service ? (
-          <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-            {/* Service Header */}
-            <div className="relative">
-              <img
-                src={service.image}
-                alt={service.name}
-                className="w-full h-64 object-cover"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                <h1 className="text-3xl font-bold text-white">
-                  {service.name}
-                </h1>
-              </div>
-            </div>
-
-            {/* Service Details */}
-            <div className="p-6">
-              <p className="text-gray-700 mb-4">{service.description}</p>
-              <p className="text-lg font-semibold mb-4">
-                BDT {service?.price?.toFixed(2)}
-              </p>
-
-              {/* Date Picker */}
-              <div className="mb-6">
-                <label
-                  htmlFor="date"
-                  className="block text-lg font-bold text-gray-700"
-                >
-                  Select Date:
-                </label>
-                <input
-                  type="date"
-                  id="date"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
-                  onChange={handleDateChange}
-                  value={format(selectedDate, "yyyy-MM-dd")}
+    <>
+      <ScrollToTopButton></ScrollToTopButton>
+      <div className="py-16">
+        <div className="p-4 max-w-4xl mx-auto">
+          {service ? (
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+              {/* Service Header */}
+              <div className="relative">
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="w-full h-64 object-cover"
                 />
-              </div>
-
-              {/* Time Slots */}
-              <div className="mb-6">
-                <h2 className="text-xl font-semibold mb-2">
-                  Available Time Slots
-                </h2>
-                <div className="grid grid-cols-2 gap-4">
-                  {availableSlots.length > 0 ? (
-                    availableSlots.map((slot) => (
-                      <button
-                        key={slot._id}
-                        className={`btn ${
-                          slot === selectedSlot
-                            ? "btn-primary"
-                            : "btn-secondary"
-                        } ${
-                          slot.isBooked === "booked"
-                            ? "cursor-not-allowed opacity-50"
-                            : ""
-                        }`}
-                        disabled={slot.isBooked === "booked"}
-                        onClick={() => handleSlotClick(slot)}
-                      >
-                        {slot.startTime}
-                      </button>
-                    ))
-                  ) : (
-                    <p>No available slots for this date.</p>
-                  )}
+                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                  <h1 className="text-3xl font-bold text-white">
+                    {service.name}
+                  </h1>
                 </div>
               </div>
 
-              {/* Book Button */}
-              <div>
-                <button
-                  className="btn btn-success w-full"
-                  onClick={handleBookService}
-                  disabled={!selectedSlot}
-                >
-                  Book This Service
-                </button>
+              {/* Service Details */}
+              <div className="p-6">
+                <p className="text-gray-700 mb-4">{service.description}</p>
+                <p className="text-lg font-semibold mb-4">
+                  BDT {service?.price?.toFixed(2)}
+                </p>
+
+                {/* Date Picker */}
+                <div className="mb-6">
+                  <label
+                    htmlFor="date"
+                    className="block text-lg font-bold text-gray-700"
+                  >
+                    Select Date:
+                  </label>
+                  <input
+                    type="date"
+                    id="date"
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+                    onChange={handleDateChange}
+                    value={format(selectedDate, "yyyy-MM-dd")}
+                  />
+                </div>
+
+                {/* Time Slots */}
+                <div className="mb-6">
+                  <h2 className="text-xl font-semibold mb-2">
+                    Available Time Slots
+                  </h2>
+                  <div className="grid grid-cols-2 gap-4">
+                    {availableSlots.length > 0 ? (
+                      availableSlots.map((slot) => (
+                        <button
+                          key={slot._id}
+                          className={`btn ${
+                            slot === selectedSlot
+                              ? "btn-primary"
+                              : "btn-secondary"
+                          } ${
+                            slot.isBooked === "booked"
+                              ? "cursor-not-allowed opacity-50"
+                              : ""
+                          }`}
+                          disabled={slot.isBooked === "booked"}
+                          onClick={() => handleSlotClick(slot)}
+                        >
+                          {slot.startTime}
+                        </button>
+                      ))
+                    ) : (
+                      <p>No available slots for this date.</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Book Button */}
+                <div>
+                  <button
+                    className="btn btn-success w-full"
+                    onClick={handleBookService}
+                    disabled={!selectedSlot}
+                  >
+                    Book This Service
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <p>Loading service details...</p>
-        )}
+          ) : (
+            <p>Loading service details...</p>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
