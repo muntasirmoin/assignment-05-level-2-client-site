@@ -39,33 +39,57 @@ const NavBar: React.FC = () => {
   const now = new Date();
 
   // Filter and sort the bookings
+  // const combineDateAndTime = (date: string, time: string): Date => {
+  //   // Example format: '2024-09-02' for date and '12:00' for time
+  //   const [hours, minutes] = time.split(":").map(Number);
+  //   const formattedDate = `${date}T${time}:00`; // Format as ISO string: 'YYYY-MM-DDTHH:MM:00'
+  //   return new Date(formattedDate);
+  // }; start here
   const combineDateAndTime = (date: string, time: string): Date => {
-    // Example format: '2024-09-02' for date and '12:00' for time
+    const [year, month, day] = date.split("-").map(Number);
     const [hours, minutes] = time.split(":").map(Number);
-    const formattedDate = `${date}T${time}:00`; // Format as ISO string: 'YYYY-MM-DDTHH:MM:00'
-    return new Date(formattedDate);
+    return new Date(year, month - 1, day, hours, minutes);
   };
 
   // Filter and sort the bookings
+  console.log("BookingSlot", bookings);
+  // const nextSlot = bookings
+  //   .filter((booking) => {
+  //     const bookingDate = combineDateAndTime(
+  //       booking.slotId.date,
+  //       booking.slotId.startTime
+  //     );
+  //     return bookingDate > now;
+  //   })
+  //   .sort((a, b) => {
+  //     const dateA = combineDateAndTime(
+  //       a.slotId.date,
+  //       a.slotId.startTime
+  //     ).getTime();
+  //     const dateB = combineDateAndTime(
+  //       b.slotId.date,
+  //       b.slotId.startTime
+  //     ).getTime();
+  //     return dateA - dateB;
+  //   })[0]; // Get the first (earliest) upcoming slot
+
   const nextSlot = bookings
-    .filter((booking) => {
+    .map((booking) => {
+      // Combine date and time to get a Date object
       const bookingDate = combineDateAndTime(
         booking.slotId.date,
         booking.slotId.startTime
       );
-      return bookingDate > now;
+      return {
+        ...booking,
+        combinedDateTime: bookingDate,
+      };
     })
-    .sort((a, b) => {
-      const dateA = combineDateAndTime(
-        a.slotId.date,
-        a.slotId.startTime
-      ).getTime();
-      const dateB = combineDateAndTime(
-        b.slotId.date,
-        b.slotId.startTime
-      ).getTime();
-      return dateA - dateB;
-    })[0]; // Get the first (earliest) upcoming slot
+    .filter((booking) => booking.combinedDateTime > now) // Filter for future slots
+    .sort((a, b) => a.combinedDateTime.getTime() - b.combinedDateTime.getTime()) // Sort by date and time
+    .shift(); // Get the earliest slot
+
+  console.log("Next Slot:", nextSlot);
 
   console.log("nextSlot", nextSlot?.slotId?.date, bookings);
   // end
