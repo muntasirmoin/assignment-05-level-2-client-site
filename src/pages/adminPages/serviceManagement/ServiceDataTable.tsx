@@ -153,8 +153,8 @@ const ServiceDataTable = () => {
               {/* <th className="py-3 px-4 text-center">Service ID</th> */}
               <th className="py-3 px-4 text-center">Service Name</th>
               <th className="py-3 px-4 text-center">Description</th>
-              <th className="py-3 px-4 text-center">Price</th>
-              <th className="py-3 px-4 text-center">Duration</th>
+              <th className="py-3 px-4 text-center">Price[BDT]</th>
+              <th className="py-3 px-4 text-center">Duration[minutes]</th>
               <th className="py-3 px-4 text-center">Update</th>
               <th className="py-3 px-4 text-center">Delete</th>
             </tr>
@@ -165,7 +165,7 @@ const ServiceDataTable = () => {
                 {/* <td className="py-2 px-4">{service._id}</td> */}
                 <td className="py-2 px-4 text-center">{service.name}</td>
                 <td className="py-2 px-4 text-center">{service.description}</td>
-                <td className="py-2 px-4 text-center">${service.price}</td>
+                <td className="py-2 px-4 text-center">{service.price}</td>
                 <td className="py-2 px-4 text-center">{service.duration}</td>
                 <td className="py-2 px-4 text-center">
                   <button
