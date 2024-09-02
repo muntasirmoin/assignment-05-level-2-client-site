@@ -46,20 +46,12 @@ We envision Wheels Wash as a leader in the vehicle service and wash industry, re
 
 ## Features:
 
-1. User Registration(signUp)!
-2. User login!
-3. Create Wheels wash services1
-4. Get Single Service!
-5. Get All Services!
-6. Update services!
-7. Delete A Service!
-8. Create Slots!
-9. Get available slot!
-10. Book a service!
-11. Get all booking!
-12. Get Users Booking!
-13. Get Upcoming slot!
-14. Get Past Slot!
+1. Home page:
+
+- Navigation menu
+- Footer
+- Features od services
+- Review Submit and View All review
 
 ### Installation Steps [How to set up and use the application locally.]
 
