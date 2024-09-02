@@ -84,7 +84,7 @@ const BookingPageFeatures = () => {
     if (slotID) {
       try {
         await markSlotAsBooked({ slotId: slotID }).unwrap();
-        alert("Slot booked successfully!");
+        // alert("Slot booked successfully!");
       } catch (error) {
         console.error("Error booking slot:", error);
         alert(

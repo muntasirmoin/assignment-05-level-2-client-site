@@ -115,6 +115,7 @@ const UpdateServiceModal: React.FC<UpdateServiceModalProps> = ({
             <input
               type="text"
               id="image"
+              name="image"
               value={selectedService.image}
               onChange={handleUpdateChange}
               className="border p-2 rounded w-full"

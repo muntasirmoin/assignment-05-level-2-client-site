@@ -53,22 +53,27 @@ const FeaturedServices = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {serviceData?.data.slice(0, 6).map((service) => (
             <div key={service._id} className="relative group">
-              <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-36 object-cover rounded-lg"
-              />
+              <div className="overflow-hidden rounded-lg shadow-lg">
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="w-full h-48 object-cover" // Fixed height for the image
+                />
+                <div className="p-3 bg-white">
+                  <h3 className="text-lg font-semibold mb-1">{service.name}</h3>
+                  {/* <p className="text-sm text-gray-600 mb-2">
+                    {service.description}
+                  </p> */}
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-bold text-gray-800">
+                      BDT {service.price}
+                    </span>
+                  </div>
+                </div>
+              </div>
               <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
                 <p className="text-white text-center p-4">
                   {service.description}
-                </p>
-              </div>
-              <div className="absolute bottom-2 left-2 right-2 flex justify-between items-center px-4">
-                <h3 className="text-lg font-semibold text-white">
-                  {service.name}
-                </h3>
-                <p className="text-lg font-semibold text-white">
-                  BDT {service.price} {/* Adjust currency symbol as needed */}
                 </p>
               </div>
             </div>
