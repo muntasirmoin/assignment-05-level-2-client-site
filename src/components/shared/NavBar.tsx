@@ -228,12 +228,19 @@ const NavBar: React.FC = () => {
                 <>
                   {/* Render Logout Button if User is Logged In */}
                   <li>
-                    <button
+                    {/* <button
                       onClick={handleLogout}
                       className={getLinkClasses("/")}
                     >
                       Logout
-                    </button>
+                    </button> */}
+                    <Link
+                      to="#"
+                      onClick={handleLogout}
+                      className={getLinkClasses("/login")}
+                    >
+                      Logout
+                    </Link>
                   </li>
                 </>
               ) : (
