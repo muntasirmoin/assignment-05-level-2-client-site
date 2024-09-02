@@ -11,40 +11,28 @@ interface Slot {
   date: string;
 
   startTime: string;
-
-  // Add other fields if necessary done
 }
 
 interface Booking {
   _id: string;
   slotId: Slot;
-  // Add other fields if necessary
 }
 
 const NavBar: React.FC = () => {
   const location = useLocation();
-  // const user = selectCurrentUser();
+
   const user = useSelector(selectCurrentUser);
 
   const roleUser = user?.role === "user";
-
-  console.log("roleUser", roleUser);
 
   // start
   const { data, error, isLoading } = useGetUpcomingBookingsByUserIdQuery(
     user?.userId
   );
-  // Ensure data is properly typed and exists
+  // Ensure here data is properly typed and exists
   const bookings: Booking[] = data?.data || [];
   const now = new Date();
 
-  // Filter and sort the bookings
-  // const combineDateAndTime = (date: string, time: string): Date => {
-  //   // Example format: '2024-09-02' for date and '12:00' for time
-  //   const [hours, minutes] = time.split(":").map(Number);
-  //   const formattedDate = `${date}T${time}:00`; // Format as ISO string: 'YYYY-MM-DDTHH:MM:00'
-  //   return new Date(formattedDate);
-  // }; start here
   const combineDateAndTime = (date: string, time: string): Date => {
     const [year, month, day] = date.split("-").map(Number);
     const [hours, minutes] = time.split(":").map(Number);
@@ -52,26 +40,6 @@ const NavBar: React.FC = () => {
   };
 
   // Filter and sort the bookings
-  console.log("BookingSlot", bookings);
-  // const nextSlot = bookings
-  //   .filter((booking) => {
-  //     const bookingDate = combineDateAndTime(
-  //       booking.slotId.date,
-  //       booking.slotId.startTime
-  //     );
-  //     return bookingDate > now;
-  //   })
-  //   .sort((a, b) => {
-  //     const dateA = combineDateAndTime(
-  //       a.slotId.date,
-  //       a.slotId.startTime
-  //     ).getTime();
-  //     const dateB = combineDateAndTime(
-  //       b.slotId.date,
-  //       b.slotId.startTime
-  //     ).getTime();
-  //     return dateA - dateB;
-  //   })[0]; // Get the first (earliest) upcoming slot
 
   const nextSlot = bookings
     .map((booking) => {
@@ -88,13 +56,6 @@ const NavBar: React.FC = () => {
     .filter((booking) => booking.combinedDateTime > now) // Filter for future slots
     .sort((a, b) => a.combinedDateTime.getTime() - b.combinedDateTime.getTime()) // Sort by date and time
     .shift(); // Get the earliest slot
-
-  console.log("Next Slot:", nextSlot);
-
-  console.log("nextSlot", nextSlot?.slotId?.date, bookings);
-  // end
-
-  // console.log("navbarUSer", user);
 
   const dispatch = useAppDispatch();
   const handleLogout = () => {
@@ -114,7 +75,6 @@ const NavBar: React.FC = () => {
     <div className="fixed mx-auto w-full max-w-screen-xl z-50">
       <div className="navbar bg-[#0f3e2a] text-[#F8FAFC]">
         {" "}
-        {/* Updated bg and text colors */}
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
