@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BrandingSection = () => {
   return (
@@ -22,12 +23,12 @@ const BrandingSection = () => {
           Our expert team ensures your car looks as good as new!
         </p>
         <div className="flex justify-center">
-          <a
-            href="/services"
-            className="bg-[#8B0000]  text-white hover:bg-[#d91b1b]  px-6 py-3 rounded-lg text-lg font-semibold"
+          <Link
+            to="/services"
+            className="bg-[#8B0000] text-white hover:bg-[#d91b1b] px-6 py-3 rounded-lg text-lg font-semibold"
           >
             Discover Our Services
-          </a>
+          </Link>
         </div>
       </div>
     </section>

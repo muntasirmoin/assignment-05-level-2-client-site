@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSignUpMutation } from "../../redux/features/auth/authApi";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 // import Swal from "sweetalert2";
 
@@ -174,9 +174,9 @@ const SignUpPage: React.FC = () => {
             {" "}
             <p className="text-red-500 mb-4">
               If you're already registered. Please{" "}
-              <a href="/login" className="text-blue-500 underline">
+              <Link to="/login" className="text-blue-500 underline">
                 Login!
-              </a>
+              </Link>
               .
             </p>
           </div>

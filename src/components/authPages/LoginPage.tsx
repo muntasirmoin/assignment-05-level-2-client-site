@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useLoginMutation } from "../../redux/features/auth/authApi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { setUser, TUSer } from "../../redux/features/auth/authSlice";
 import { toast } from "sonner";
@@ -168,9 +168,9 @@ const LoginPage: React.FC = () => {
             {" "}
             <p className="text-red-500 mb-4">
               If you're not registered. Please{" "}
-              <a href="/signUp" className="text-blue-500 underline">
+              <Link to="/signUp" className="text-blue-500 underline">
                 Sign Up!
-              </a>
+              </Link>
               .
             </p>
           </div>
