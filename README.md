@@ -44,39 +44,43 @@ Our mission at Wheels Wash is to provide reliable and high-quality vehicle servi
 
 We envision Wheels Wash as a leader in the vehicle service and wash industry, recognized for our innovation, customer-centric approach, and commitment to excellence. Our goal is to set the standard for quality in vehicle care, helping our customers maintain their vehicles in top condition.
 
-## Features:
+### Features:
 
-1. Home page:
+### 1. Home page:
 
 - Navigation menu
 - Footer
 - Features od services
 - Review Submit and View All review
 
-2. Service page:
+### 2. Service page:
 
 - Search and sort option for service data and can select single data click on Details
 
-3. Booking Page:
+### 3. Booking Page:
 
 - Selected Service (site) and User Booking details (right)
 - Click on Pay Now open payment page
 
-4. About Page
+### 4. About Page
 
 - Introduction, mission, vision of this Wheels Wash.
 
-5. Login Page
-6. SignUp Page [user can register here]
-7. DashBoard User
+### 5. Login Page
+
+### 6. SignUp Page [user can register here]
+
+### 7. DashBoard User
 
 - User Can update user info. User can view his past and upcoming booking.
 
-8. Dashboard Admin
+### 8. Dashboard Admin
 
 - Admin can update user role.
 - Can add, update, delete Service data.
 - Can add slot data! Can change Slot status only between available and cancel, not booked one!
+
+### 9. LogOut
 
 ### Installation Steps [How to set up and use the application locally.]
 
