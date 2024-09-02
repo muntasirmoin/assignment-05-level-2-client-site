@@ -4,11 +4,11 @@
 
 ## Live URL
 
-1. `Live Deployment Link (Client): [ ] `
-2. `Live Deployment Link (Server): [ ] `
-3. `GitHub Repository Client :[ https://github.com/muntasirmoin/assignment-05-level-2-client-site.git ] `
-4. `GitHub Repository Server :[ https://github.com/muntasirmoin/assignment-05-level-2-server-site.git ] `
-5. `Project Overview Video :[ ] `
+1. `Live Deployment Link (Client):`
+2. `Live Deployment Link (Server): `
+3. `GitHub Repository Client :` https://github.com/muntasirmoin/assignment-05-level-2-client-site.git
+4. `GitHub Repository Server :` https://github.com/muntasirmoin/assignment-05-level-2-server-site.git
+5. `Project Overview Video :`
 
 ## User Login
 
@@ -73,18 +73,25 @@ We envision Wheels Wash as a leader in the vehicle service and wash industry, re
 
 ### - Install dependency
 
-- bcrypt
-- cookie-parser
-- cors
-- dotenv
-- express
-- http-status
-- jsonwebtoken
-- mongodb
+- date-fns
+- jwt-decode
+- localforage
+- match-sorter
 - mongoose
-- ts-node-dev
-- validator
-- zod
+- phosphor-react
+- react
+- react-dom
+- react-helmet-async
+- react-hook-form
+- react-icons
+- react-redux
+- react-router-dom
+- redux
+- redux-persist
+- sonner
+- sort-by
+- sweetalert2
+- To install these packages use npm: `npm install`
 
 ### - Install devDependencies (if required)
 
