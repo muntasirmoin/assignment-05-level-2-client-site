@@ -23,9 +23,7 @@ const PastBooking = () => {
   const { data: pastBookings } = useGetPastBookingsByUserIdQuery(user?.userId);
   console.log("PastBookings", pastBookings?.data);
 
-  //start
-
-  //end
+ 
 
   return (
     <div className="p-6">
