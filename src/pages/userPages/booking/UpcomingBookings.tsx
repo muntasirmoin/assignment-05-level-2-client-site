@@ -14,57 +14,7 @@ interface TimeLeft {
   minutes: number;
   seconds: number;
 }
-// const upcomingBookings = [
-//   {
-//     id: "1",
-//     service: "Car Wash",
-//     date: "2024-09-01",
-//     startTime: "09:00",
-//     endTime: "10:00",
-//     vehicleType: "car",
-//     vehicleBrand: "Toyota",
-//     vehicleModel: "Axio",
-//     manufacturingYear: 2024,
-//     registrationPlate: "Dhaka-metro-ga-17-1220",
-//   },
-//   {
-//     id: "1",
-//     service: "Car Wash",
-//     date: "2024-09-01",
-//     startTime: "09:00",
-//     endTime: "10:00",
-//     vehicleType: "car",
-//     vehicleBrand: "Toyota",
-//     vehicleModel: "Axio",
-//     manufacturingYear: 2024,
-//     registrationPlate: "Dhaka-metro-ga-17-1220",
-//   },
-//   {
-//     id: "1",
-//     service: "Car Wash",
-//     date: "2024-09-01",
-//     startTime: "09:00",
-//     endTime: "10:00",
-//     vehicleType: "car",
-//     vehicleBrand: "Toyota",
-//     vehicleModel: "Axio",
-//     manufacturingYear: 2024,
-//     registrationPlate: "Dhaka-metro-ga-17-1220",
-//   },
-//   {
-//     id: "1",
-//     service: "Car Wash",
-//     date: "2024-09-01",
-//     startTime: "09:00",
-//     endTime: "10:00",
-//     vehicleType: "car",
-//     vehicleBrand: "Toyota",
-//     vehicleModel: "Axio",
-//     manufacturingYear: 2024,
-//     registrationPlate: "Dhaka-metro-ga-17-1220",
-//   },
-//   // Add more booking objects as needed
-// ];
+
 
 const CountdownTimer: React.FC<{ targetDate: string }> = ({ targetDate }) => {
   const calculateTimeLeft = (): TimeLeft => {
